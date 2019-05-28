@@ -77,20 +77,7 @@ public class Tank extends Hitbox {
         Hitbox h = (Hitbox) O;
         int tx = getX() + getxS() - h.getxS();
         int ty = getY() + getyS() - h.getyS();
-        /*int cx = getX() + getxS() - h.getxS() + getW() / 2;
-         int cy = getY() + getyS() - h.getyS() + getW() / 2;
-         int hcx = h.getX() + h.getW() / 2;
-         int hcy = h.getY() + h.getH() / 2;*/
-        /*if(isBet(tx, h.getX(), h.getX() + h.getW()) && isBet(tx + getW(), h.getX(), h.getX() + h.getW())){
-         if(isBet(ty, h.getY(), h.getY() + h.getH()) && isBet(ty + getH(), h.getY(), h.getY() + h.getH())){
-         this.setxS(-getxS());
-         return true;
-         }
-         if(isBet(ty, h.getY(), h.getY() + h.getH()) || isBet(ty + getH(), h.getY(), h.getY() + h.getH())){
-         this.setxS(-getyS());
-         return true;
-         }
-         }*/
+        
         //Check bot/top collisions
         if (isBet(ty, h.getY(), h.getY() + h.getH()) ^ isBet(ty + getH(), h.getY(), h.getY() + h.getH())) {
             if (isBet(getX(), h.getX(), h.getX() + h.getW()) || isBet(getX() + getW(), h.getX(), h.getX() + h.getW())) {
@@ -107,16 +94,6 @@ public class Tank extends Hitbox {
                 return true;
             }
         }
-        /*if (isBet(ty, h.getY(), h.getY() + h.getH()) || isBet(ty + getH(), h.getY(), h.getY() + h.getH())) {
-            if (isBet(tx, h.getX(), h.getX() + h.getW()) && isBet(tx + getW(), h.getX(), h.getX() + h.getW())) {
-                this.setyS(-getyS());
-                return true;
-            }
-            if (isBet(tx, h.getX(), h.getX() + h.getW()) || isBet(tx + getW(), h.getX(), h.getX() + h.getW())) {
-                this.setxS(-getxS());
-                return true;
-            }
-        }*/
         return false;
     }
 

@@ -24,6 +24,9 @@ public class Game extends Canvas implements KeyListener, Runnable {
     private ArrayList<KeyEvent> al;
     private boolean[] keys;
     private Tank t1;
+    private ArrayList<Tank> player;
+    private ArrayList<KeyEvent[]> keybinds;
+    private ArrayList<Bullet> b = new ArrayList<Bullet>();
     private BufferedImage back;
     private ArrayList<Hitbox> map;
     //private Hitbox h;
@@ -59,6 +62,7 @@ public class Game extends Canvas implements KeyListener, Runnable {
         //h.draw(graphToBack);
         t1.draw(graphToBack);
         //t1.colCirc(h);
+        
         for(int i = 0; i < map.size(); i++){
             t1.colCirc(map.get(i));
             map.get(i).draw(graphToBack);
@@ -76,10 +80,25 @@ public class Game extends Canvas implements KeyListener, Runnable {
         else if(keys[2]){
             //
             //t1.setyS(-2);
+            b.add(new Bullet(t1));
             t1.draw(graphToBack);
+            keys[2] = false;
         }
         else{
             t1.moveAndDraw(graphToBack);
+        }
+        for(int i = 0; i < b.size(); i++){
+            for(int j = 0; j < map.size(); j++){
+                b.get(i).didCol(map.get(j));
+            }
+            b.get(i).draw(graphToBack);
+        }
+        for(int i = 0; i < b.size(); i++){
+            b.get(i).moveAndDraw(window);
+            if(b.get(i).colCount > 5){
+                b.remove(i);
+                i--;
+            }
         }
         //System.out.println(t1.getxS() + " " + t1.getyS());
         twoDGraph.drawImage(back, null, 0, 0);
