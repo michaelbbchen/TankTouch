@@ -25,8 +25,8 @@ public class Bullet extends Hitbox {
     }
 
     public Bullet(Tank t) {
-        setxS(t.getxS());
-        setyS(t.getyS());
+        setxS(2*t.getxS());
+        setyS(2*t.getyS());
         setX((int) (Math.cos(t.getAngle()) * 0.75 * t.getW() + (t.getX() + t.getW() / 2)));
         setY((int) (Math.sin(t.getAngle()) * 0.75 * t.getW() + (t.getY() + t.getW() / 2)));
         setW(5);

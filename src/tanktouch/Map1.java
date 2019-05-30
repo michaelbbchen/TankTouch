@@ -21,6 +21,12 @@ public class Map1 {
         add(new Hitbox(120,630,120,120)); add(new Hitbox(1200,630,120,120));
         add(new Hitbox(450,630,120,120)); add(new Hitbox(870,630,120,120));
     }};
+    static ArrayList<int[]> sp = new ArrayList<int[]>(){{
+       add(new int[]{400, 200}); 
+       add(new int[]{400, 700});
+       add(new int[]{1000, 200});
+       add(new int[]{1000, 700}); 
+    }};
     public static ArrayList<Hitbox> getMap(){
         return al;
     }

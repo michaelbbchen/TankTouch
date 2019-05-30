@@ -18,6 +18,8 @@ public class TankTouch extends JFrame {
 
     public TankTouch() {
         super("TankTouch");
+        //TitleFrame tf = new TitleFrame();
+        
         setSize(WIDTH, HEIGHT);
 
         Game theGame = new Game();

@@ -15,7 +15,7 @@ public class Tank extends Hitbox {
     private double angle;
     private Color c;
     private double speed;
-
+    private String name = "";
     //Constructors
     public Tank() {
         super();
@@ -43,7 +43,10 @@ public class Tank extends Hitbox {
         c = C;
         speed = 5;
     }
-
+    public Tank(int x, int y, String n){
+        super(x, y, 50, 50); c = Color.BLUE; angle = 0; speed = 5;
+        name = n;
+    }
     public Tank(int x, int y, int w, int h, double a) {
         super(x, y, w, h);
         angle = a;
@@ -103,6 +106,7 @@ public class Tank extends Hitbox {
         window.fillRect(getX(), getY(), getW(), getW());
         window.setColor(dc);
         window.fillOval((int) (getX() + 5 * getW() / 12 + getW() * Math.cos(angle) / 6), (int) (getY() + 5 * getW() / 12 + getW() * Math.sin(angle) / 6), getW() / 5, getW() / 5);
+        window.drawString(name, getX(), getY());
     }
 
     public void moveAndDraw(Graphics window) {
