@@ -6,6 +6,8 @@
 
 import javax.swing.JFrame;
 import java.awt.Component;
+import java.util.ArrayList;
+import java.io.*;
 
 /**
  *
@@ -31,7 +33,20 @@ public class TankTouch extends JFrame {
         setVisible(true);
 
     }
+    public TankTouch(ArrayList<int[]> kb, ArrayList<String> tl){
+        super("TankTouch");
+        //TitleFrame tf = new TitleFrame();
+        
+        setSize(WIDTH, HEIGHT);
 
+        Game theGame = new Game(kb, tl);
+        ((Component) theGame).setFocusable(true);
+        getContentPane().add(theGame);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+
+        setVisible(true);
+    }
     public static void main(String[] args) {
         // TODO code application logic here
         TankTouch go = new TankTouch();

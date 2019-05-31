@@ -27,8 +27,8 @@ public class Game extends Canvas implements KeyListener, Runnable {
     private boolean[] keys;
     private Tank t1;
     private PlayerList pl = new PlayerList();
-    private ArrayList<int[]> keybinds;
-    private ArrayList<boolean[]> keypress;
+    private ArrayList<int[]> keybinds = new ArrayList<int[]>();
+    private ArrayList<boolean[]> keypress = new ArrayList<boolean[]>();
     private ArrayList<Bullet> b = new ArrayList<Bullet>();
     private BufferedImage back;
     private ArrayList<Hitbox> map;
@@ -43,7 +43,8 @@ public class Game extends Canvas implements KeyListener, Runnable {
         map = Map1.getMap();
         al = new ArrayList<KeyEvent>();
         keys = new boolean[3];
-        keys = new boolean[]{false, false, false};
+        keypress.add(keys);
+        keybinds.add(new int[]{37, 38, 39});
         this.addKeyListener(this);
         new Thread(this).start();
         setVisible(true);
@@ -78,6 +79,9 @@ public class Game extends Canvas implements KeyListener, Runnable {
         Graphics graphToBack = back.createGraphics();
         graphToBack.setColor(Color.WHITE);
         graphToBack.fillRect(0, 0, 1440, 900);
+        for (int i = 0; i < map.size(); i++) {
+            map.get(i).draw(graphToBack);
+        }
         for (int i = 0; i < pl.pl.size(); i++) {
             if (pl.alive.get(i)) {
                 pl.pl.get(i).draw(graphToBack);
@@ -85,10 +89,7 @@ public class Game extends Canvas implements KeyListener, Runnable {
         }
         //t1.draw(graphToBack);
         pl.checkCol(map, b);
-        /*for (int i = 0; i < map.size(); i++) {
-         t1.colCirc(map.get(i));
-         map.get(i).draw(graphToBack);
-         }*/
+
         for (int i = 0; i < pl.pl.size(); i++) {
             if (keypress.get(i)[0]) {
                 pl.pl.get(i).setAngle(pl.pl.get(i).getAngle() + 0.06);
@@ -97,7 +98,7 @@ public class Game extends Canvas implements KeyListener, Runnable {
                 pl.pl.get(i).setAngle(pl.pl.get(i).getAngle() - 0.06);
                 pl.pl.get(i).draw(graphToBack);
             } else if (keypress.get(i)[2]) {
-                b.add(new Bullet(t1));
+                b.add(new Bullet(pl.pl.get(i)));
                 pl.pl.get(i).draw(graphToBack);
                 keypress.get(i)[2] = false;
             } else {
@@ -105,18 +106,18 @@ public class Game extends Canvas implements KeyListener, Runnable {
             }
         }
         /*if (keys[0]) {
-            t1.setAngle(t1.getAngle() + 0.06);
-            t1.draw(graphToBack);
-        } else if (keys[1]) {
-            t1.setAngle(t1.getAngle() - 0.06);
-            t1.draw(graphToBack);
-        } else if (keys[2]) {
-            b.add(new Bullet(t1));
-            t1.draw(graphToBack);
-            keys[2] = false;
-        } else {
-            t1.moveAndDraw(graphToBack);
-        }*/
+         t1.setAngle(t1.getAngle() + 0.06);
+         t1.draw(graphToBack);
+         } else if (keys[1]) {
+         t1.setAngle(t1.getAngle() - 0.06);
+         t1.draw(graphToBack);
+         } else if (keys[2]) {
+         b.add(new Bullet(t1));
+         t1.draw(graphToBack);
+         keys[2] = false;
+         } else {
+         t1.moveAndDraw(graphToBack);
+         }*/
         for (int i = 0; i < b.size(); i++) {
             for (int j = 0; j < map.size(); j++) {
                 b.get(i).didCol(map.get(j));
@@ -145,14 +146,16 @@ public class Game extends Canvas implements KeyListener, Runnable {
          keys[2] = true;
          }*/
         for (int i = 0; i < keybinds.size(); i++) {
-            if (e.getKeyCode() == keybinds.get(i)[0]) {
-                keypress.get(i)[0] = true;
-            }
-            if (e.getKeyCode() == keybinds.get(i)[1]) {
-                keypress.get(i)[1] = true;
-            }
-            if (e.getKeyCode() == keybinds.get(i)[2]) {
-                keypress.get(i)[2] = true;
+            if (pl.alive.get(i)) {
+                if (e.getKeyCode() == keybinds.get(i)[0]) {
+                    keypress.get(i)[0] = true;
+                }
+                if (e.getKeyCode() == keybinds.get(i)[1]) {
+                    keypress.get(i)[1] = true;
+                }
+                if (e.getKeyCode() == keybinds.get(i)[2]) {
+                    keypress.get(i)[2] = true;
+                }
             }
         }
         //repaint();
@@ -170,13 +173,13 @@ public class Game extends Canvas implements KeyListener, Runnable {
          }*/
         for (int i = 0; i < keybinds.size(); i++) {
             if (e.getKeyCode() == keybinds.get(i)[0]) {
-                keypress.get(i)[0] = true;
+                keypress.get(i)[0] = false;
             }
             if (e.getKeyCode() == keybinds.get(i)[1]) {
-                keypress.get(i)[1] = true;
+                keypress.get(i)[1] = false;
             }
             if (e.getKeyCode() == keybinds.get(i)[2]) {
-                keypress.get(i)[2] = true;
+                keypress.get(i)[2] = false;
             }
         }
         //repaint();

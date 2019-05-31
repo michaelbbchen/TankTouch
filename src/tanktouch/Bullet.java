@@ -46,7 +46,8 @@ public class Bullet extends Hitbox {
         int tx = getX() + getxS() - h.getxS();
         int ty = getY() + getyS() - h.getyS();
         if (isBet(ty, h.getY(), h.getY() + h.getH()) ^ isBet(ty + getH(), h.getY(), h.getY() + h.getH())) {
-            if (isBet(getX(), h.getX(), h.getX() + h.getW()) || isBet(getX() + getW(), h.getX(), h.getX() + h.getW())) {
+            if (isBet(getX(), h.getX(), h.getX() + h.getW()) || isBet(getX() + getW(), h.getX(), h.getX() + h.getW())
+                    || isBet(h.getX(), getX(), getX() + getW()) || isBet(h.getX() + h.getW(), getX(), getX() + getW())) {
                 this.setyS(-getyS());
                 //System.out.println("first");
                 colCount++;
@@ -55,7 +56,8 @@ public class Bullet extends Hitbox {
         }
         //Check side collisions
         if (isBet(tx, h.getX(), h.getX() + h.getW()) ^ isBet(tx + getW(), h.getX(), h.getX() + h.getW())) {
-            if (isBet(ty, h.getY(), h.getY() + h.getH()) || isBet(ty + getH(), h.getY(), h.getY() + h.getH())) {
+            if (isBet(ty, h.getY(), h.getY() + h.getH()) || isBet(ty + getH(), h.getY(), h.getY() + h.getH())
+                    || isBet(h.getY(), getY(), getY() + getH()) || isBet(h.getY() + h.getH(), getY(), getY() + getH())) {
                 this.setxS(-getxS());
                 //System.out.println("second");
                 colCount++;

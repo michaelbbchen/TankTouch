@@ -152,7 +152,8 @@ public class TitleFrame extends javax.swing.JFrame {
             String[] inp = infoTF.getText().split(" ");
             if (inp.length == 4 && inp[1].length() == 1 && inp[2].length() == 1 && inp[3].length() == 1) {
                 tl.add(inp[0]);
-                kb.add(new int[]{(int) inp[1].charAt(0), (int) inp[2].charAt(0), (int) inp[3].charAt(0)});
+                //kb.add(new int[]{(int) inp[1].charAt(0), (int) inp[2].charAt(0), (int) inp[3].charAt(0)});
+                kb.add(new int[]{(int) (char) Character.toUpperCase(inp[1].charAt(0)), (int)(char) Character.toUpperCase(inp[2].charAt(0)),(int) (char) Character.toUpperCase(inp[3].charAt(0))});
                 pcount++;
                 pCountLBL.setText("Player Count: " + pcount);
             } else {
@@ -171,7 +172,8 @@ public class TitleFrame extends javax.swing.JFrame {
                 String[] inp = infoTF.getText().trim().split(" ");
                 if (inp.length == 4 && inp[1].length() == 1 && inp[2].length() == 1 && inp[3].length() == 1) {
                     tl.add(inp[0]);
-                    kb.add(new int[]{(int) inp[1].charAt(0), (int) inp[2].charAt(0), (int) inp[3].charAt(0)});
+                    kb.add(new int[]{(int) (char) Character.toUpperCase(inp[1].charAt(0)), (int)(char) Character.toUpperCase(inp[2].charAt(0)),(int) (char) Character.toUpperCase(inp[3].charAt(0))});
+                    System.out.print(inp[1].charAt(0));
                     pcount++;
                     pCountLBL.setText("Player Count: " + pcount);
                 }
@@ -184,7 +186,7 @@ public class TitleFrame extends javax.swing.JFrame {
 
     private void StartBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StartBTNActionPerformed
         // TODO add your handling code here:
-        TankTouch.main(new String[0]);
+        TankTouch go = new TankTouch(kb, tl);
     }//GEN-LAST:event_StartBTNActionPerformed
 
     /**
