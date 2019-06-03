@@ -44,6 +44,7 @@ public class TitleFrame extends javax.swing.JFrame {
         loadKeysTF = new javax.swing.JTextField();
         loadKeysBTN = new javax.swing.JButton();
         StartBTN = new javax.swing.JButton();
+        formatLBL = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -88,14 +89,19 @@ public class TitleFrame extends javax.swing.JFrame {
             }
         });
 
+        formatLBL.setFont(new java.awt.Font("Comic Sans MS", 0, 24)); // NOI18N
+        formatLBL.setText("Name LTurn RTurn Shoot");
+
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
         mainPanelLayout.setHorizontalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mainPanelLayout.createSequentialGroup()
-                .addContainerGap(573, Short.MAX_VALUE)
+                .addContainerGap(364, Short.MAX_VALUE)
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
+                        .addComponent(formatLBL)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(pCountLBL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(infoTF)
@@ -116,7 +122,9 @@ public class TitleFrame extends javax.swing.JFrame {
                 .addGap(78, 78, 78)
                 .addComponent(TitleLBL, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(infoTF, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(infoTF, javax.swing.GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE)
+                    .addComponent(formatLBL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(pCountLBL, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -227,6 +235,7 @@ public class TitleFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton StartBTN;
     private javax.swing.JLabel TitleLBL;
+    private javax.swing.JLabel formatLBL;
     private javax.swing.JTextField infoTF;
     private javax.swing.JButton loadKeysBTN;
     private javax.swing.JTextField loadKeysTF;

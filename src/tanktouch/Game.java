@@ -74,7 +74,6 @@ public class Game extends Canvas implements KeyListener, Runnable {
         if (back == null) {
             back = (BufferedImage) (createImage(getWidth(), getHeight()));
         }
-
         //Reference to background image
         Graphics graphToBack = back.createGraphics();
         graphToBack.setColor(Color.WHITE);

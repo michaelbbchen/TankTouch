@@ -48,6 +48,23 @@ public class PlayerList {
         }
         pl.get(n).setColor(Color.RED);
     }
+    public int checkAlive(){
+        int rtn = 0;
+        for(int i = 0; i <alive.size(); i++){
+            if(alive.get(i)){
+                rtn++;
+            }
+        }
+        return rtn;
+    }
+    public String findWinner(){
+        for(int i = 0; i < pl.size(); i++){
+            if(alive.get(i)){
+                return pl.get(i).getName();
+            }
+        }
+        return null;
+    }
     public ArrayList<Tank> getPList(){
         return pl;
     }

@@ -74,6 +74,10 @@ public class Tank extends Hitbox {
         c = C;
     }
     
+    public String getName(){
+        return name;
+    }
+    
     //Calculates direction based on angle
     public void setSpeed() {
         setxS((int) (Math.cos(angle) * speed));
