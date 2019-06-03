@@ -52,8 +52,9 @@ public class TankTouch extends JFrame {
                 for (int j = 0; j < 3; j++) {
                     bw.write(" " + (char) kb.get(i)[j]);
                 }
+                bw.write('\n');
             }
-            bw.write('\n');
+            
             bw.close();
         } catch (IOException e) {
             e.printStackTrace();
