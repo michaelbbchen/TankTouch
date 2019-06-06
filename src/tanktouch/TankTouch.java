@@ -47,12 +47,14 @@ public class TankTouch extends JFrame {
             File file = new File("keys.txt");
             FileWriter fw = new FileWriter(file.getAbsoluteFile());
             BufferedWriter bw = new BufferedWriter(fw);
+            bw.write(tl.size() + "");
+            bw.newLine();
             for (int i = 0; i < tl.size(); i++) {
                 bw.write(tl.get(i));
                 for (int j = 0; j < 3; j++) {
                     bw.write(" " + (char) kb.get(i)[j]);
                 }
-                bw.write('\n');
+                bw.newLine();
             }
             
             bw.close();

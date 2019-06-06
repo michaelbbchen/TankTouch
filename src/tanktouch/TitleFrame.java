@@ -4,12 +4,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 import java.awt.Component;
 import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
 import java.util.*;
 import javax.swing.JFrame;
+import java.io.*;
 
 /**
  *
@@ -161,7 +161,7 @@ public class TitleFrame extends javax.swing.JFrame {
             if (inp.length == 4 && inp[1].length() == 1 && inp[2].length() == 1 && inp[3].length() == 1) {
                 tl.add(inp[0]);
                 //kb.add(new int[]{(int) inp[1].charAt(0), (int) inp[2].charAt(0), (int) inp[3].charAt(0)});
-                kb.add(new int[]{(int) (char) Character.toUpperCase(inp[1].charAt(0)), (int)(char) Character.toUpperCase(inp[2].charAt(0)),(int) (char) Character.toUpperCase(inp[3].charAt(0))});
+                kb.add(new int[]{(int) (char) Character.toUpperCase(inp[1].charAt(0)), (int) (char) Character.toUpperCase(inp[2].charAt(0)), (int) (char) Character.toUpperCase(inp[3].charAt(0))});
                 pcount++;
                 pCountLBL.setText("Player Count: " + pcount);
             } else {
@@ -172,22 +172,31 @@ public class TitleFrame extends javax.swing.JFrame {
 
     private void loadKeysBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadKeysBTNActionPerformed
         // TODO add your handling code here:
-        Scanner scn = new Scanner("keys.txt");
-        int num = scn.nextInt();
-        int pnum = (int) loadKeysTF.getText().charAt(0);
-        if (num > pnum) {
-            for (int i = 0; i < pnum; i++) {
-                String[] inp = infoTF.getText().trim().split(" ");
-                if (inp.length == 4 && inp[1].length() == 1 && inp[2].length() == 1 && inp[3].length() == 1) {
-                    tl.add(inp[0]);
-                    kb.add(new int[]{(int) (char) Character.toUpperCase(inp[1].charAt(0)), (int)(char) Character.toUpperCase(inp[2].charAt(0)),(int) (char) Character.toUpperCase(inp[3].charAt(0))});
-                    System.out.print(inp[1].charAt(0));
-                    pcount++;
-                    pCountLBL.setText("Player Count: " + pcount);
+        int pnum = (int) loadKeysTF.getText().charAt(0) - (int) '0';
+        try {
+            Scanner scn = new Scanner(new File("keys.txt"));
+            //String t = scn.nextLine();
+            int num = scn.nextInt();
+            //System.out.print(num);
+            if (num >= pnum) {
+                for (int i = 0; i <= pnum; i++) {
+                    //String t = scn.nextLine();
+                    //System.out.print(t);
+                    String[] inp = scn.nextLine().trim().split(" ");
+                    
+                    if (inp.length == 4 && inp[1].length() == 1 && inp[2].length() == 1 && inp[3].length() == 1) {
+                        tl.add(inp[0]);
+                        kb.add(new int[]{(int) (char) Character.toUpperCase(inp[1].charAt(0)), (int) (char) Character.toUpperCase(inp[2].charAt(0)), (int) (char) Character.toUpperCase(inp[3].charAt(0))});
+                        System.out.print(inp[1].charAt(0));
+                        pcount++;
+                        pCountLBL.setText("Player Count: " + pcount);
+                    }
                 }
             }
-        }
-        else{
+            else{
+                loadKeysTF.setText("Not enough keybinds stored");
+            }
+        } catch (Exception E) {
             loadKeysTF.setText("Not enough keybinds stored");
         }
     }//GEN-LAST:event_loadKeysBTNActionPerformed
